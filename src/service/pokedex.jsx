@@ -1,39 +1,32 @@
-
-
-export const reqPokemon = async(pokemon) =>{
+export const reqPokemon = async (pokemon) => {
     try {
-        const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/pikachu`)
+        const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         const data = await resp.json()
-        const {abilities} = data
-        const {sprites} = data
-        const {forms} = nombre
-        const url = sprites.other.showdown.front_default
-        const nameAbility = abilities.ability.name
-        const nombre = forms.name
-        const efect = abilities.ability.url.effect_entries.effect
         
+        const { sprites, forms, abilities } = data;
+        const url = sprites.other['official-artwork'].front_default;
+
+        const arregloForms = forms.map((form) => ({
+            nombre: form.name
+
+        }))
 
         const arregloAbilities = abilities.map((abilities) => ({
-            nameAbility: abilities.ability.name,
-            efect: abiliities.ability.url.effect_entries.effect,
-            
-
+            nombreHabilidad: abilities.ability.name
         }))
 
-        const arregloForms = forms.map((forms) => ({
-            nombre: forms.name,
-        }))
 
-        const arregloSprites = sprites.map((sprites) => ({
-            url: sprites.pokemon.other.showdown.front_default
-        }))
-        
+        const nombre = arregloForms[0].nombre
+        const nombreHabilidad = arregloAbilities[0].nombreHabilidad
 
-        const iPokedex = [nombre, nameAbility, efect, url ]
-        console.log(iPokedex)
-        
+        const arregloSprites = [{
+            url: url
+        }]
+
+        const iPokedex = [nombre, nombreHabilidad, url];
+        console.log(iPokedex);
         
     } catch (err) {
-        console.error(err)
+        console.error(err);
     }
-}
+};

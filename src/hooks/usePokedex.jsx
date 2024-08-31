@@ -7,8 +7,8 @@ export const usePokedex = () => {
     const handleGetPokemon = async(pokemon, e) =>{
         e.preventDefault()
 
-        await reqPokemon(pokemon).then((iPokedex) => {
-            setIPokedex(iPokedex)
+        await reqPokemon(pokemon).then((result) => {
+            setIPokedex(result)
         })
     }
 
@@ -16,5 +16,4 @@ export const usePokedex = () => {
         handleGetPokemon,
         iPokedex
     }
-
 }
