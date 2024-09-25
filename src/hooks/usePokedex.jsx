@@ -2,18 +2,17 @@ import { useState } from "react"
 import { reqPokemon } from "../service/pokedex"
 
 export const usePokedex = () => {
-    const [iPokedex, setIPokedex] = useState([])
+    const [iPokedex, setIPokedex] = useState(null)
 
-    const handleGetPokemon = async(pokemon, e) =>{
+    const handleGetPokemon = async (pokemon, e) => {
         e.preventDefault()
 
-        await reqPokemon(pokemon).then((result) => {
-            setIPokedex(result)
-        })
-    }
+        const result = await reqPokemon(pokemon)
+        setIPokedex(result)
+    };
 
     return {
         handleGetPokemon,
         iPokedex
-    }
-}
+    };
+};
